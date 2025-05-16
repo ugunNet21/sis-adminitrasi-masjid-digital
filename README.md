@@ -118,4 +118,25 @@
 
 ## Install Lib
 
-- `npm install @fortawesome/fontawesome-svg-core @fortawesome/free-solid-svg-icons @fortawesome/free-brands-svg-icons @fortawesome/react-fontawesome`
+```bash
+
+npm install @fortawesome/fontawesome-svg-core @fortawesome/free-solid-svg-icons @fortawesome/free-brands-svg-icons @fortawesome/react-fontawesome
+
+```
+
+```bash
+composer require spatie/laravel-permission
+```
+
+- `php artisan vendor:publish --provider="Spatie\Permission\PermissionServiceProvider"`
+- `php artisan migrate`
+
+```php
+use Spatie\Permission\Traits\HasRoles;
+
+class User extends Authenticatable
+{
+    use HasRoles, HasUuids; // jika menggunakan uuid
+}
+
+```
