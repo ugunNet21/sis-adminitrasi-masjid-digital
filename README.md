@@ -1,151 +1,178 @@
-# About
-<p>Simasda (Sistem Informasi Masjid Digital & Administrasi)</p>
+# Simasda (Sistem Informasi Masjid Digital & Administrasi)
 
-<p>Admin</p>
+Simasda is a web-based application built with Laravel and React, designed to streamline digital mosque management and administrative tasks. This project provides a robust solution for managing mosque-related information and operations efficiently.
 
-![alt text](/public/admin/assets/images/image.png)
+## Screenshots
 
+### Admin Dashboard
+![Admin Dashboard](/public/admin/assets/images/image.png)
 
-<p>Beranda</p>
+### Beranda (Homepage)
+![Beranda](/public/admin/assets/images/image-fe.png)
 
-![alt text](/public/admin/assets/images/image-fe.png)
+## Prerequisites
 
-# How To Install
+Before setting up the project, ensure you have the following installed:
+- PHP >= 8.2
+- Node.js >= 16.x
+- MySQL, SQLite, or PostgreSQL
+- Composer
+- MAMP/XAMPP (for Windows/macOS) or equivalent for Ubuntu/Linux
+- Git
 
-- `laravel new nama-aplikasi`
-- `pilih react`
-- `npm install`
-- `composer install`
+For Ubuntu users, ensure your environment is configured with the appropriate PHP extensions and database services.
 
-# Running
+## Installation
 
-- `npm run dev`
-- `php artisan serve` 
+Follow these steps to set up the project locally:
 
-# prequisit
+1. **Create a new Laravel project**:
+   ```bash
+   laravel new simasda
+   ```
+   When prompted, select **React** as the frontend stack.
 
-- `php 8`
-- `node js`
-- `mysql / sqlite`
-- `psql`
-- `mamp/xampp`
-- `di ubuntu sesuaikan`
+2. **Navigate to the project directory**:
+   ```bash
+   cd simasda
+   ```
 
-# Struktur
+3. **Install PHP dependencies**:
+   ```bash
+   composer install
+   ```
+
+4. **Install JavaScript dependencies**:
+   ```bash
+   npm install
+   ```
+
+5. **Install additional libraries**:
+   - Font Awesome for icons:
+     ```bash
+     npm install @fortawesome/fontawesome-svg-core @fortawesome/free-solid-svg-icons @fortawesome/free-brands-svg-icons @fortawesome/react-fontawesome
+     ```
+   - Spatie Laravel Permission for role-based access control:
+     ```bash
+     composer require spatie/laravel-permission
+     ```
+     Publish the Spatie configuration:
+     ```bash
+     php artisan vendor:publish --provider="Spatie\Permission\PermissionServiceProvider"
+     ```
+     Run migrations to set up permission tables:
+     ```bash
+     php artisan migrate
+     ```
+
+6. **Configure the environment**:
+   - Copy `.env.example` to `.env`:
+     ```bash
+     cp .env.example .env
+     ```
+   - Generate an application key:
+     ```bash
+     php artisan key:generate
+     ```
+   - Configure your database connection in the `.env` file (e.g., MySQL, SQLite, or PostgreSQL).
+
+## Running the Application
+
+1. **Start the Vite development server**:
+   ```bash
+   npm run dev
+   ```
+
+2. **Start the Laravel server**:
+   ```bash
+   php artisan serve
+   ```
+
+The application will be available at `http://localhost:8000`.
+
+## Project Structure
+
+Below is an overview of the project's directory structure:
 
 ```bash
 .
 ├── app
-│   ├── Http
-│   ├── Models
-│   └── Providers
-├── artisan
-├── bootstrap
-│   ├── app.php
-│   ├── cache
-│   └── providers.php
-├── components.json
-├── composer.json
-├── composer.lock
-├── config
-│   ├── app.php
-│   ├── auth.php
-│   ├── cache.php
-│   ├── database.php
-│   ├── filesystems.php
-│   ├── inertia.php
-│   ├── logging.php
-│   ├── mail.php
-│   ├── queue.php
-│   ├── services.php
-│   └── session.php
+│   ├── Http            # Controllers, Middleware, Requests
+│   ├── Models          # Eloquent Models
+│   └── Providers       # Service Providers
+├── bootstrap           # Application Bootstrapping
+├── config              # Configuration Files
 ├── database
-│   ├── database.sqlite
-│   ├── factories
-│   ├── .gitignore
-│   ├── migrations
-│   └── seeders
-├── .editorconfig
-├── .env
-├── .env.example
-├── eslint.config.js
-├── .git
-│   ├── branches
-│   ├── COMMIT_EDITMSG
-│   ├── config
-│   ├── description
-│   ├── HEAD
-│   ├── hooks
-│   ├── index
-│   ├── info
-│   ├── logs
-│   ├── objects
-│   └── refs
-├── .gitattributes
-├── .github
-│   └── workflows
-├── .gitignore
-├── package.json
-├── package-lock.json
-├── phpunit.xml
-├── .prettierignore
-├── .prettierrc
-├── public
-│   ├── apple-touch-icon.png
-│   ├── build
-│   ├── favicon.ico
-│   ├── favicon.svg
-│   ├── .htaccess
-│   ├── index.php
-│   ├── logo.svg
-│   └── robots.txt
+│   ├── factories       # Model Factories
+│   ├── migrations      # Database Migrations
+│   └── seeders         # Database Seeders
+├── public              # Public Assets (images, favicon, etc.)
 ├── resources
-│   ├── css
-│   ├── js
-│   └── views
+│   ├── css             # CSS Files
+│   ├── js              # JavaScript/TypeScript Files
+│   └── views           # Blade Templates
 ├── routes
-│   ├── auth.php
-│   ├── console.php
-│   ├── settings.php
-│   └── web.php
-├── storage
-│   ├── app
-│   ├── framework
-│   └── logs
-├── struktur-simasda.txt
-├── tests
-│   ├── Feature
-│   ├── Pest.php
-│   ├── TestCase.php
-│   └── Unit
-├── tsconfig.json
-└── vite.config.ts
-
-35 directories, 51 files
-
+│   ├── auth.php        # Authentication Routes
+│   ├── console.php     # Artisan Console Routes
+│   ├── settings.php    # Settings Routes
+│   └── web.php         # Web Routes
+├── storage             # File Storage (logs, uploads)
+├── tests               # Unit and Feature Tests
+├── .env                # Environment Configuration
+├── composer.json       # PHP Dependencies
+├── package.json        # JavaScript Dependencies
+├── tsconfig.json       # TypeScript Configuration
+├── vite.config.ts      # Vite Configuration
+└── artisan             # Laravel Artisan CLI
 ```
 
-## Install Lib
+### Key Configuration Files
+- **composer.json**: Defines PHP dependencies, including `laravel/framework`, `inertiajs/inertia-laravel`, `spatie/laravel-permission`, and `tightenco/ziggy`.
+- **tsconfig.json**: Configures TypeScript for React JSX, with module resolution set to `bundler` and paths for `@/*` and `ziggy-js`.
+- **.env**: Environment-specific settings (database, app key, etc.).
 
-```bash
+## Role-Based Access Control
 
-npm install @fortawesome/fontawesome-svg-core @fortawesome/free-solid-svg-icons @fortawesome/free-brands-svg-icons @fortawesome/react-fontawesome
-
-```
-
-```bash
-composer require spatie/laravel-permission
-```
-
-- `php artisan vendor:publish --provider="Spatie\Permission\PermissionServiceProvider"`
-- `php artisan migrate`
+The project uses `spatie/laravel-permission` for role-based access control. To enable this in the `User` model, add the `HasRoles` trait:
 
 ```php
 use Spatie\Permission\Traits\HasRoles;
+use Illuminate\Foundation\Auth\User as Authenticatable;
 
 class User extends Authenticatable
 {
-    use HasRoles, HasUuids; // jika menggunakan uuid
+    use HasRoles; // Add this trait
+    // If using UUIDs, include: use HasUuids;
 }
-
 ```
+
+After running migrations, you can assign roles and permissions to users as needed.
+
+## Development Scripts
+
+The `composer.json` includes useful scripts:
+- **Run development servers**:
+  ```bash
+  composer run dev
+  ```
+  This starts the Laravel server, queue listener, logs, and Vite concurrently.
+- **Run tests**:
+  ```bash
+  composer run test
+  ```
+- **Run with SSR (Server-Side Rendering)**:
+  ```bash
+  composer run dev:ssr
+  ```
+
+## Contributing
+
+1. Fork the repository.
+2. Create a feature branch (`git checkout -b feature/YourFeature`).
+3. Commit your changes (`git commit -m 'Add YourFeature'`).
+4. Push to the branch (`git push origin feature/YourFeature`).
+5. Open a pull request.
+
+## License
+
+This project is licensed under the MIT License. See the `LICENSE` file for details.
