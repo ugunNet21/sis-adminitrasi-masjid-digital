@@ -1,5 +1,5 @@
 # About
-
+<p>Simasda (Sistem Informasi Masjid Digital & Administrasi)</p>
 
 # How To Install
 
