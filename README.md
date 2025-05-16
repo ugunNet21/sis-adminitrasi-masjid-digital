@@ -1,5 +1,27 @@
 # About
 
+
+# How To Install
+
+- `laravel new nama-aplikasi`
+- `pilih react`
+- `npm install`
+- `composer install`
+
+# Running
+
+- `npm run dev`
+- `php artisan serve` 
+
+# prequisit
+
+- `php 8`
+- `node js`
+- `mysql / sqlite`
+- `psql`
+- `mamp/xampp`
+- `di ubuntu sesuaikan`
+
 # Struktur
 
 ```bash
@@ -93,3 +115,7 @@
 35 directories, 51 files
 
 ```
+
+## Install Lib
+
+- `npm install @fortawesome/fontawesome-svg-core @fortawesome/free-solid-svg-icons @fortawesome/free-brands-svg-icons @fortawesome/react-fontawesome`
