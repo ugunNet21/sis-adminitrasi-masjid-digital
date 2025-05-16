@@ -1,6 +1,15 @@
 # About
 <p>Simasda (Sistem Informasi Masjid Digital & Administrasi)</p>
 
+<p>Admin</p>
+
+![alt text](/public/admin/assets/images/image.png)
+
+
+<p>Beranda</p>
+
+![alt text](/public/admin/assets/images/image-fe.png)
+
 # How To Install
 
 - `laravel new nama-aplikasi`
