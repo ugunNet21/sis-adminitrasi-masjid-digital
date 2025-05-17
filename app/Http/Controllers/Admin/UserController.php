@@ -8,17 +8,40 @@ use App\Models\User;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Hash;
 use Illuminate\Validation\Rules;
+use Inertia\Inertia;
 use Spatie\Permission\Models\Role;
 
 class UserController extends Controller
 {
     // Get all users
-    public function index()
+    public function index(Request $request)
+    {
+        $search = $request->input('search');
+    
+        $users = User::with('roles')
+            ->when($search, fn ($query) =>
+                $query->where(function ($q) use ($search) {
+                    $q->where('name', 'like', "%{$search}%")
+                      ->orWhere('email', 'like', "%{$search}%")
+                      ->orWhere('username', 'like', "%{$search}%");
+                })
+            )
+            ->paginate(5)
+            ->withQueryString();
+    
+        return Inertia::render('users/index', [
+            'users' => $users,
+            'filters' => $request->only(['search']),
+        ]);
+    }
+    
+
+    // get users with api
+    public function apiIndex()
     {
         $users = User::with('roles')->paginate(10);
         return response()->json($users);
     }
-
     // Create new user
     public function store(Request $request)
     {

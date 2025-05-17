@@ -75,6 +75,11 @@ Follow these steps to set up the project locally:
      ```bash
      npm install lucide-react
      ```
+   - serverside
+     ```bash
+     npm install lodash
+
+     ```
 
 6. **Configure the environment**:
    - Copy `.env.example` to `.env`:

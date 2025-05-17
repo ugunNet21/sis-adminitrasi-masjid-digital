@@ -8,12 +8,11 @@ Route::get('/', function () {
 })->name('home');
 
 Route::middleware(['auth', 'verified'])->group(function () {
+    // for page / inertia
     Route::get('dashboard', function () {
         return Inertia::render('dashboard');
     })->name('dashboard');
 
-    // Route::get('/dashboard', [\App\Http\Controllers\Admin\DashboardController::class, 'index'])->name('dashboard');
-    // Route::get('/users', [\App\Http\Controllers\Admin\UserController::class, 'index'])->name('users.index');
     Route::apiResource('users', \App\Http\Controllers\Admin\UserController::class);
     Route::get('users/roles', [\App\Http\Controllers\Admin\UserController::class, 'roles']);
     Route::get('/roles', [\App\Http\Controllers\Admin\RoleController::class, 'index'])->name('roles.index');
@@ -24,6 +23,10 @@ Route::middleware(['auth', 'verified'])->group(function () {
     Route::get('/donations', [\App\Http\Controllers\Admin\DonationController::class, 'index'])->name('donations.index');
     Route::get('/financial-reports', [\App\Http\Controllers\Admin\FinancialReportController::class, 'index'])->name('financial-reports.index');
     Route::get('/obituaries', [\App\Http\Controllers\Admin\ObituaryController::class, 'index'])->name('obituaries.index');
+
+    // api
+    Route::get('api/users', [\App\Http\Controllers\Admin\UserController::class, 'apiIndex']);
+    
 });
 
 require __DIR__.'/settings.php';
