@@ -1,5 +1,5 @@
 <?php
-
+// routes/web
 use Illuminate\Support\Facades\Route;
 use Inertia\Inertia;
 
@@ -13,7 +13,9 @@ Route::middleware(['auth', 'verified'])->group(function () {
     })->name('dashboard');
 
     // Route::get('/dashboard', [\App\Http\Controllers\Admin\DashboardController::class, 'index'])->name('dashboard');
-    Route::get('/users', [\App\Http\Controllers\Admin\UserController::class, 'index'])->name('users.index');
+    // Route::get('/users', [\App\Http\Controllers\Admin\UserController::class, 'index'])->name('users.index');
+    Route::apiResource('users', \App\Http\Controllers\Admin\UserController::class);
+    Route::get('users/roles', [\App\Http\Controllers\Admin\UserController::class, 'roles']);
     Route::get('/roles', [\App\Http\Controllers\Admin\RoleController::class, 'index'])->name('roles.index');
     Route::get('/masjids', [\App\Http\Controllers\Admin\MasjidController::class, 'index'])->name('masjids.index');
     Route::get('/prayer-times', [\App\Http\Controllers\Admin\PrayerTimeController::class, 'index'])->name('prayer-times.index');
