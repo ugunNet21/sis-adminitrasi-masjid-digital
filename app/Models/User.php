@@ -4,6 +4,7 @@ namespace App\Models;
 // use Illuminate\Contracts\Auth\MustVerifyEmail;
 use Illuminate\Database\Eloquent\Concerns\HasUuids;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
+use Illuminate\Database\Eloquent\Relations\HasMany;
 use Illuminate\Foundation\Auth\User as Authenticatable;
 use Illuminate\Notifications\Notifiable;
 use Spatie\Permission\Traits\HasRoles;
@@ -51,5 +52,9 @@ class User extends Authenticatable
     public function getAuthIdentifierName()
     {
         return 'email';
+    }
+    public function donations(): HasMany
+    {
+        return $this->hasMany(Donation::class, 'user_id', 'id');
     }
 }
