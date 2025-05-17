@@ -71,8 +71,9 @@ Follow these steps to set up the project locally:
      ```bash
      npm install react-icons
      ```
+   - Fix Some Icon
      ```bash
-     
+     npm install lucide-react
      ```
 
 6. **Configure the environment**:

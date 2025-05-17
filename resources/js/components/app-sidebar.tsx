@@ -4,6 +4,8 @@ import {
     Clock,
     FileText,
     Folder,
+    HandCoins,
+    Landmark,
     LayoutGrid,
     Mic,
     Shield,
@@ -50,7 +52,7 @@ const mainNavItems: NavItem[] = [
     {
         title: 'Masjid Profile',
         href: '/masjids',
-        // icon: Mosque,
+        icon: Landmark,
         // group: 'Masjid'
     },
     {
@@ -75,7 +77,7 @@ const mainNavItems: NavItem[] = [
     {
         title: 'Donations',
         href: '/donations',
-        // icon: Donate,
+        icon: HandCoins,
         // group: 'Financial'
     },
     {
