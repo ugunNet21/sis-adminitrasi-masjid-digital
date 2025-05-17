@@ -147,6 +147,67 @@ Below is an overview of the project's directory structure:
 └── artisan             # Laravel Artisan CLI
 ```
 
+# Tahap Pembuatan
+
+```bash
+users, roles, permissions, dan tabel pivot model_has_roles, model_has_permissions, role_has_permissions
+
+✅ Sesuai dengan penggunaan Spatie Laravel Permission dengan UUID
+
+✅ Sudah ada integrasi peran dan otorisasi yang bisa langsung diimplementasikan di controller via middleware role, permission, can, dsb.
+
+2. Modul Masjid
+Tabel: masjids
+
+✅ Cocok untuk digunakan sebagai basis seluruh fitur karena banyak entitas lain memiliki masjid_id
+
+3. Modul Sholat
+Tabel: prayer_times
+
+✅ Struktur ideal: masjid_id, date, dan waktu-waktu sholat
+
+4. Modul Kegiatan
+Tabel: events
+
+✅ Ada relasi ke masjid, dan mendukung informasi lengkap (judul, waktu, lokasi, gambar)
+
+5. Modul Kajian / Ceramah
+Tabel: sermons
+
+✅ Relasi ke masjid dan data lengkap untuk dokumentasi ceramah/kajian
+
+6. Modul Donasi
+Tabel: donations
+
+✅ Lengkap: tipe (infaq, zakat, wakaf), metode pembayaran, status, bukti, dll.
+
+7. Modul Keuangan Masjid
+Tabel: financial_reports
+
+✅ Cocok untuk mencatat pemasukan dan pengeluaran
+
+8. Modul Takziyah
+Tabel: obituaries
+
+✅ Menyimpan informasi kematian dan kontak keluarga yang bisa ditampilkan publik
+
+```
+```php
+
+🧭 Rangkuman Urutan Modul Backend:
+No	Modul	Status	Controller	Notes
+1	User & Role	✅ Selesai	UserController	Gunakan Spatie
+2	Masjid Profile	🔜	MasjidController	Single record
+3	Jadwal Sholat	🔜	PrayerTimeController	CRUD
+4	Event / Kegiatan	🔜	EventController	CRUD
+5	Donasi	🔜	DonationController	CRUD, filter per tanggal (opsional)
+6	Laporan Keuangan	🔜	FinancialReportController	CRUD, saldo bulan ini
+7	Ceramah/Kajian	🔜	SermonController	File upload
+8	Obituary	🔜	ObituaryController	CRUD
+9	Settings	🚧 Ada	Laravel built-in	FE dan test kembali
+
+```
+
 ### Key Configuration Files
 - **composer.json**: Defines PHP dependencies, including `laravel/framework`, `inertiajs/inertia-laravel`, `spatie/laravel-permission`, and `tightenco/ziggy`.
 - **tsconfig.json**: Configures TypeScript for React JSX, with module resolution set to `bundler` and paths for `@/*` and `ziggy-js`.
