@@ -78,6 +78,7 @@ Follow these steps to set up the project locally:
    - serverside
      ```bash
      npm install lodash
+     npm install --save-dev @types/lodash
 
      ```
 
