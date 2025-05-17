@@ -17,24 +17,23 @@ class UserController extends Controller
     public function index(Request $request)
     {
         $search = $request->input('search');
-    
+
         $users = User::with('roles')
-            ->when($search, fn ($query) =>
+            ->when($search, fn($query) =>
                 $query->where(function ($q) use ($search) {
                     $q->where('name', 'like', "%{$search}%")
-                      ->orWhere('email', 'like', "%{$search}%")
-                      ->orWhere('username', 'like', "%{$search}%");
+                        ->orWhere('email', 'like', "%{$search}%")
+                        ->orWhere('username', 'like', "%{$search}%");
                 })
             )
             ->paginate(5)
             ->withQueryString();
-    
+
         return Inertia::render('users/index', [
-            'users' => $users,
+            'users'   => $users,
             'filters' => $request->only(['search']),
         ]);
     }
-    
 
     // get users with api
     public function apiIndex()
@@ -42,6 +41,21 @@ class UserController extends Controller
         $users = User::with('roles')->paginate(10);
         return response()->json($users);
     }
+    public function create()
+    {
+        return Inertia::render('users/create', [
+            'roles' => Role::all(),
+        ]);
+    }
+
+    public function edit(User $user)
+    {
+        return Inertia::render('users/edit', [
+            'user'  => $user->load('roles'),
+            'roles' => Role::all(),
+        ]);
+    }
+
     // Create new user
     public function store(Request $request)
     {
@@ -69,7 +83,8 @@ class UserController extends Controller
             $user->syncRoles($roles);
         }
 
-        return response()->json($user->load('roles'), 201);
+        return Inertia::location('/users');
+
     }
 
     // Get single user
@@ -104,14 +119,15 @@ class UserController extends Controller
             $user->syncRoles($roles);
         }
 
-        return response()->json($user->fresh()->load('roles'));
+        return Inertia::location('/users');
     }
 
     // Delete user
     public function destroy(User $user)
     {
         $user->delete();
-        return response()->json(null, 204);
+        return Inertia::location('/users');
+
     }
 
     // Get user roles

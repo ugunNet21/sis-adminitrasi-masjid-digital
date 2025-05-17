@@ -81,6 +81,10 @@ Follow these steps to set up the project locally:
      npm install --save-dev @types/lodash
 
      ```
+     ```bash
+     npm install @heroicons/react
+
+     ```
 
 6. **Configure the environment**:
    - Copy `.env.example` to `.env`:

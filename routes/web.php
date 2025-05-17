@@ -13,7 +13,14 @@ Route::middleware(['auth', 'verified'])->group(function () {
         return Inertia::render('dashboard');
     })->name('dashboard');
 
-    Route::apiResource('users', \App\Http\Controllers\Admin\UserController::class);
+    // Inertia Pages
+    Route::get('/users', [\App\Http\Controllers\Admin\UserController::class, 'index'])->name('users.index');
+    Route::get('/users/create', [\App\Http\Controllers\Admin\UserController::class, 'create'])->name('users.create');
+    Route::get('/users/{user}/edit', [\App\Http\Controllers\Admin\UserController::class, 'edit'])->name('users.edit');
+
+    // API Resource
+    Route::apiResource('users', \App\Http\Controllers\Admin\UserController::class)->except(['index', 'create', 'edit']);
+
     Route::get('users/roles', [\App\Http\Controllers\Admin\UserController::class, 'roles']);
     Route::get('/roles', [\App\Http\Controllers\Admin\RoleController::class, 'index'])->name('roles.index');
     Route::get('/masjids', [\App\Http\Controllers\Admin\MasjidController::class, 'index'])->name('masjids.index');
@@ -26,8 +33,8 @@ Route::middleware(['auth', 'verified'])->group(function () {
 
     // api
     Route::get('api/users', [\App\Http\Controllers\Admin\UserController::class, 'apiIndex']);
-    
+
 });
 
-require __DIR__.'/settings.php';
-require __DIR__.'/auth.php';
+require __DIR__ . '/settings.php';
+require __DIR__ . '/auth.php';

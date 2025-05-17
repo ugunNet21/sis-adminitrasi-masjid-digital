@@ -55,6 +55,13 @@ export default function UserIndex() {
             <div className="p-6">
                 <h1 className="text-2xl font-semibold mb-4">Users</h1>
 
+                {/* Create Button */}
+                <div className="mb-4">
+                    <a href="/users/create" className="inline-flex items-center px-4 py-2 bg-blue-600 text-white rounded-md hover:bg-blue-700">
+                        Create User
+                    </a>
+                </div>
+
                 <div className="overflow-x-auto bg-white shadow rounded-lg">
                     {/* Search input */}
                     <input
@@ -87,17 +94,31 @@ export default function UserIndex() {
                                     </td>
                                     <td className="px-4 py-2">
                                         <span
-                                            className={`px-2 py-1 text-xs rounded ${user.is_active ? 'bg-green-100 text-green-700' : 'bg-red-100 text-red-700'
+                                            className={`px-2 py-1 text-xs rounded ${user.is_active
+                                                ? 'bg-green-100 text-green-700'
+                                                : 'bg-red-100 text-red-700'
                                                 }`}
                                         >
                                             {user.is_active ? 'Active' : 'Inactive'}
                                         </span>
                                     </td>
                                     <td className="px-4 py-2 text-right space-x-2">
-                                        <a href={`/users/${user.id}/edit`} className="text-blue-600 hover:underline">
+                                        <a
+                                            href={`/users/${user.id}/edit`}
+                                            className="text-blue-600 hover:underline"
+                                        >
                                             Edit
                                         </a>
-                                        <button className="text-red-600 hover:underline">Delete</button>
+                                        <button
+                                            onClick={() => {
+                                                if (confirm('Are you sure you want to delete this user?')) {
+                                                    router.delete(`/users/${user.id}`);
+                                                }
+                                            }}
+                                            className="text-red-600 hover:underline"
+                                        >
+                                            Delete
+                                        </button>
                                     </td>
                                 </tr>
                             ))}
