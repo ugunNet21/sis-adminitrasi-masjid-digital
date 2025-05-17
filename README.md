@@ -64,6 +64,16 @@ Follow these steps to set up the project locally:
      ```bash
      php artisan migrate
      ```
+   - Icon
+     ```bash
+     npm install @iconify/react @iconify-icons/mdi
+     ```
+     ```bash
+     npm install react-icons
+     ```
+     ```bash
+     
+     ```
 
 6. **Configure the environment**:
    - Copy `.env.example` to `.env`:
